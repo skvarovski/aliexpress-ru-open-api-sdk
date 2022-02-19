@@ -427,6 +427,7 @@ class OpenAsyncProductApiServiceApi
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+        $query = '';
         $multipart = false;
 
         // query params
@@ -438,6 +439,7 @@ class OpenAsyncProductApiServiceApi
             }
             else {
                 $queryParams['body'] = $body;
+
             }
         }
 
@@ -476,7 +478,9 @@ class OpenAsyncProductApiServiceApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                //$httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+
             }
         }
 
@@ -492,7 +496,10 @@ class OpenAsyncProductApiServiceApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $httpBody = $queryParams['body']->toHeaderValue();
+
+        //$query = http_build_query($queryParams['body']);
+
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1272,7 +1279,8 @@ class OpenAsyncProductApiServiceApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        //$query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2442,7 +2450,11 @@ class OpenAsyncProductApiServiceApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        //$query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query='';
+        //$httpBody = $queryParams;
+
+        //print_r($httpBody);exit;
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
