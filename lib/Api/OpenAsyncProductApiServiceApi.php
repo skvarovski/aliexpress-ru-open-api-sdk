@@ -1606,12 +1606,13 @@ class OpenAsyncProductApiServiceApi
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
+        $query = null;
 
 
 
 
 
-        if ($multipart) {
+        /*if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
             );
@@ -1651,6 +1652,49 @@ class OpenAsyncProductApiServiceApi
                 // for HTTP post (form)
                 $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
             }
+        }*/
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        //print_r($body);
+        // for model (json/xml)
+        if (isset($open_async_product_api_on_off_products_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($open_async_product_api_on_off_products_request));
+            } else {
+                $httpBody = $open_async_product_api_on_off_products_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+
+            }
         }
 
         // this endpoint requires API key authentication
@@ -1670,7 +1714,7 @@ class OpenAsyncProductApiServiceApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        //$query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1996,12 +2040,13 @@ class OpenAsyncProductApiServiceApi
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
+        $query = null;
 
 
 
 
 
-        if ($multipart) {
+        /*if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
             );
@@ -2041,7 +2086,53 @@ class OpenAsyncProductApiServiceApi
                 // for HTTP post (form)
                 $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
             }
+        }*/
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
         }
+
+        //print_r($body);
+        // for model (json/xml)
+        if (isset($open_async_product_api_on_off_products_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($open_async_product_api_on_off_products_request));
+            } else {
+                $httpBody = $open_async_product_api_on_off_products_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+
+            }
+        }
+
+
 
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
@@ -2060,7 +2151,8 @@ class OpenAsyncProductApiServiceApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+
+        //$query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3947,6 +4039,7 @@ class OpenAsyncProductApiServiceApi
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
+        $query = null;
 
         // query params
         if ($body !== null) {
@@ -3963,7 +4056,7 @@ class OpenAsyncProductApiServiceApi
 
 
 
-        if ($multipart) {
+        /*if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
             );
@@ -3997,7 +4090,50 @@ class OpenAsyncProductApiServiceApi
                 // for HTTP post (form)
                 $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
             }
+        }*/
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
         }
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
 
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
@@ -4016,7 +4152,9 @@ class OpenAsyncProductApiServiceApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        //print_r($httpBody);exit;
+
+        //$query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -4336,11 +4474,14 @@ class OpenAsyncProductApiServiceApi
             );
         }
 
+
+
         $resourcePath = '/api/v1/product/update-sku-stock';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+        $query = '';
         $multipart = false;
 
         // query params
@@ -4355,10 +4496,11 @@ class OpenAsyncProductApiServiceApi
             }
         }
 
+        //print_r($queryParams);exit;
 
 
 
-        if ($multipart) {
+        /*if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
             );
@@ -4371,6 +4513,49 @@ class OpenAsyncProductApiServiceApi
 
         // for model (json/xml)
         if (count($formParams) > 0) {
+            print_r("aaa");
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }*/
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -4394,6 +4579,8 @@ class OpenAsyncProductApiServiceApi
             }
         }
 
+        //print_r($httpBody);exit;
+
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
         if ($apiKey !== null) {
@@ -4411,7 +4598,10 @@ class OpenAsyncProductApiServiceApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        //$query = \GuzzleHttp\Psr7\build_query($queryParams);
+        //$httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+        //$httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+        //print_r($httpBody);exit;
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
