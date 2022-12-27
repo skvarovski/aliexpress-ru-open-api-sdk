@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAsyncProductApiUpdateSkuStockRequest
+ * OpenAsyncProductApiUpdateFieldValue
  *
  * PHP version 7.4
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * OpenAsyncProductApiUpdateSkuStockRequest Class Doc Comment
+ * OpenAsyncProductApiUpdateFieldValue Class Doc Comment
  *
  * @category Class
+ * @description значение зависит от поля: int для delivery_time, freight_template_id; string для subject; array для image_urls
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class OpenAsyncProductApiUpdateFieldValue implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
       *
       * @var string
       */
-    protected static $openAPIModelName = 'open_async_product_apiUpdateSkuStockRequest';
+    protected static $openAPIModelName = 'open_async_product_apiUpdateField_value';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +58,7 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
       * @var string[]
       */
     protected static $openAPITypes = [
-        'products' => '\OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequestProduct[]'
+        
     ];
 
     /**
@@ -68,7 +69,7 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'products' => null
+        
     ];
 
     /**
@@ -77,7 +78,7 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'products' => false
+        
     ];
 
     /**
@@ -166,7 +167,7 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $attributeMap = [
-        'products' => 'products'
+        
     ];
 
     /**
@@ -175,7 +176,7 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $setters = [
-        'products' => 'setProducts'
+        
     ];
 
     /**
@@ -184,7 +185,7 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $getters = [
-        'products' => 'getProducts'
+        
     ];
 
     /**
@@ -244,7 +245,6 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('products', $data ?? [], null);
     }
 
     /**
@@ -288,35 +288,6 @@ class OpenAsyncProductApiUpdateSkuStockRequest implements ModelInterface, ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets products
-     *
-     * @return \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequestProduct[]|null
-     */
-    public function getProducts()
-    {
-        return $this->container['products'];
-    }
-
-    /**
-     * Sets products
-     *
-     * @param \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequestProduct[]|null $products products
-     *
-     * @return self
-     */
-    public function setProducts($products)
-    {
-
-        if (is_null($products)) {
-            throw new \InvalidArgumentException('non-nullable products cannot be null');
-        }
-
-        $this->container['products'] = $products;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *
