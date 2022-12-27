@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | Идентификатор продукта | [optional]
-**ali_created_at** | [**\DateTime**](\DateTime.md) | Дата создания | [optional]
-**ali_updated_at** | [**\DateTime**](\DateTime.md) | Дата обновления | [optional]
+**ali_created_at** | **\DateTime** | Дата создания | [optional]
+**ali_updated_at** | **\DateTime** | Дата обновления | [optional]
 **category_id** | **string** | Индентификатор категории | [optional]
 **currency_code** | **string** | Код валюты | [optional]
 **delivery_time** | **string** | Время доставки | [optional]

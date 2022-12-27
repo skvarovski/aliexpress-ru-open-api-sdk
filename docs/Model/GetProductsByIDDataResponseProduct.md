@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | Идентификатор продукта | [optional]
-**ali_created_at** | [**\DateTime**](\DateTime.md) | Время создания | [optional]
-**ali_updated_at** | [**\DateTime**](\DateTime.md) | Время обновления | [optional]
+**ali_created_at** | **\DateTime** | Время создания | [optional]
+**ali_updated_at** | **\DateTime** | Время обновления | [optional]
 **owner_member_id** | **string** | логин, создавшего продукт | [optional]
 **owner_member_seq** | **string** | ID, создавшего продукт | [optional]
 **bulk_discount** | **string** |  | [optional]

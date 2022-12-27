@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAsyncProductApiProductCreateRequestDocTest
+ * OpenAsyncProductApiUpdateFieldValueTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * OpenAsyncProductApiProductCreateRequestDocTest Class Doc Comment
+ * OpenAsyncProductApiUpdateFieldValueTest Class Doc Comment
  *
  * @category    Class
- * @description OpenAsyncProductApiProductCreateRequestDoc
+ * @description значение зависит от поля: int для delivery_time, freight_template_id; string для subject; array для image_urls
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class OpenAsyncProductApiProductCreateRequestDocTest extends TestCase
+class OpenAsyncProductApiUpdateFieldValueTest extends TestCase
 {
 
     /**
@@ -71,18 +71,9 @@ class OpenAsyncProductApiProductCreateRequestDocTest extends TestCase
     }
 
     /**
-     * Test "OpenAsyncProductApiProductCreateRequestDoc"
+     * Test "OpenAsyncProductApiUpdateFieldValue"
      */
-    public function testOpenAsyncProductApiProductCreateRequestDoc()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "products"
-     */
-    public function testPropertyProducts()
+    public function testOpenAsyncProductApiUpdateFieldValue()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

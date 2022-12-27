@@ -7,7 +7,8 @@ open-async-product-api
 
 ### Requirements
 
-PHP 7.2 and later.
+PHP 7.4 and later.
+Should also work with PHP 8.0.
 
 ### Composer
 
@@ -54,7 +55,7 @@ $apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListRequest(); // \OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListRequest
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListRequest()); // OpenAsyncProductApiGetBrandListRequest
 
 try {
     $result = $apiInstance->openAsyncProductApiServiceGetBrandList($body);
@@ -138,6 +139,7 @@ Class | Method | HTTP request | Description
 - [OpenAsyncProductApiTaskError](docs/Model/OpenAsyncProductApiTaskError.md)
 - [OpenAsyncProductApiTaskResult](docs/Model/OpenAsyncProductApiTaskResult.md)
 - [OpenAsyncProductApiUpdateField](docs/Model/OpenAsyncProductApiUpdateField.md)
+- [OpenAsyncProductApiUpdateFieldValue](docs/Model/OpenAsyncProductApiUpdateFieldValue.md)
 - [OpenAsyncProductApiUpdateOneFieldTaskResult](docs/Model/OpenAsyncProductApiUpdateOneFieldTaskResult.md)
 - [OpenAsyncProductApiUpdateSkuPriceRequest](docs/Model/OpenAsyncProductApiUpdateSkuPriceRequest.md)
 - [OpenAsyncProductApiUpdateSkuPriceRequestProduct](docs/Model/OpenAsyncProductApiUpdateSkuPriceRequestProduct.md)

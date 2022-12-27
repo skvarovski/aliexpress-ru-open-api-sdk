@@ -1,20 +1,20 @@
 # OpenAPI\Client\OpenAsyncProductApiServiceApi
 
-All URIs are relative to https://openapi.aliexpress.ru.
+All URIs are relative to https://openapi.aliexpress.ru, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**openAsyncProductApiServiceGetBrandList()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetBrandList) | **POST** /api/v1/brand/get-brand-list | 
-[**openAsyncProductApiServiceGetProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetProducts) | **POST** /api/v1/product/get-products | Метод получения продуктов
-[**openAsyncProductApiServiceGetTasks()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetTasks) | **GET** /api/v1/tasks | Метод получения списка задач на создание/обновление товаров
-[**openAsyncProductApiServiceOfflineProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceOfflineProducts) | **POST** /api/v1/product/offline | Метод перевода продуктов в offline
-[**openAsyncProductApiServiceOnlineProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceOnlineProducts) | **POST** /api/v1/product/online | Метод перевода продуктов в online
-[**openAsyncProductApiServiceProductCreate()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceProductCreate) | **POST** /api/v1/product/create | Метод создания продуктов
-[**openAsyncProductApiServiceProductUpdateField()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceProductUpdateField) | **POST** /api/v1/product/update-field | Метод обновления поля продукта
-[**openAsyncProductApiServiceScrollProductByFilter()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceScrollProductByFilter) | **POST** /api/v1/scroll-product-by-filter | 
-[**openAsyncProductApiServiceScrollShortProductByFilter()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceScrollShortProductByFilter) | **POST** /api/v1/scroll-short-product-by-filter | 
-[**openAsyncProductApiServiceUpdateSkuPrice()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceUpdateSkuPrice) | **POST** /api/v1/product/update-sku-price | Метод обновления цены продукта по ску коду
-[**openAsyncProductApiServiceUpdateSkuStock()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceUpdateSkuStock) | **POST** /api/v1/product/update-sku-stock | Метод обновления стока продукта по ску коду
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**openAsyncProductApiServiceGetBrandList()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetBrandList) | **POST** /api/v1/brand/get-brand-list |  |
+| [**openAsyncProductApiServiceGetProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetProducts) | **POST** /api/v1/product/get-products | Метод получения продуктов |
+| [**openAsyncProductApiServiceGetTasks()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetTasks) | **GET** /api/v1/tasks | Метод получения списка задач на создание/обновление товаров |
+| [**openAsyncProductApiServiceOfflineProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceOfflineProducts) | **POST** /api/v1/product/offline | Метод перевода продуктов в offline |
+| [**openAsyncProductApiServiceOnlineProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceOnlineProducts) | **POST** /api/v1/product/online | Метод перевода продуктов в online |
+| [**openAsyncProductApiServiceProductCreate()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceProductCreate) | **POST** /api/v1/product/create | Метод создания продуктов |
+| [**openAsyncProductApiServiceProductUpdateField()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceProductUpdateField) | **POST** /api/v1/product/update-field | Метод обновления поля продукта |
+| [**openAsyncProductApiServiceScrollProductByFilter()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceScrollProductByFilter) | **POST** /api/v1/scroll-product-by-filter |  |
+| [**openAsyncProductApiServiceScrollShortProductByFilter()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceScrollShortProductByFilter) | **POST** /api/v1/scroll-short-product-by-filter |  |
+| [**openAsyncProductApiServiceUpdateSkuPrice()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceUpdateSkuPrice) | **POST** /api/v1/product/update-sku-price | Метод обновления цены продукта по ску коду |
+| [**openAsyncProductApiServiceUpdateSkuStock()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceUpdateSkuStock) | **POST** /api/v1/product/update-sku-stock | Метод обновления стока продукта по ску коду |
 
 
 ## `openAsyncProductApiServiceGetBrandList()`
@@ -38,7 +38,7 @@ $apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListRequest(); // \OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListRequest
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListRequest()); // OpenAsyncProductApiGetBrandListRequest
 
 try {
     $result = $apiInstance->openAsyncProductApiServiceGetBrandList($body);
@@ -50,9 +50,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**\OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListRequest**](../Model/.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiGetBrandListRequest**](../Model/.md)|  | |
 
 ### Return type
 
@@ -104,9 +104,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**\OpenAPI\Client\Model\OpenAsyncProductApiGetProductsRequest**](../Model/OpenAsyncProductApiGetProductsRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**\OpenAPI\Client\Model\OpenAsyncProductApiGetProductsRequest**](../Model/OpenAsyncProductApiGetProductsRequest.md)|  | |
 
 ### Return type
 
@@ -164,9 +164,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **group_id** | **string**| Идентификатор группы задач полученный при создании/обновлении товаров |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **group_id** | **string**| Идентификатор группы задач полученный при создании/обновлении товаров | |
 
 ### Return type
 
@@ -224,9 +224,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **open_async_product_api_on_off_products_request** | [**\OpenAPI\Client\Model\OpenAsyncProductApiOnOffProductsRequest**](../Model/OpenAsyncProductApiOnOffProductsRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **open_async_product_api_on_off_products_request** | [**\OpenAPI\Client\Model\OpenAsyncProductApiOnOffProductsRequest**](../Model/OpenAsyncProductApiOnOffProductsRequest.md)|  | |
 
 ### Return type
 
@@ -284,9 +284,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **open_async_product_api_on_off_products_request** | [**\OpenAPI\Client\Model\OpenAsyncProductApiOnOffProductsRequest**](../Model/OpenAsyncProductApiOnOffProductsRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **open_async_product_api_on_off_products_request** | [**\OpenAPI\Client\Model\OpenAsyncProductApiOnOffProductsRequest**](../Model/OpenAsyncProductApiOnOffProductsRequest.md)|  | |
 
 ### Return type
 
@@ -344,9 +344,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateRequestDoc**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateRequestDoc**|  | |
 
 ### Return type
 
@@ -404,9 +404,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **open_async_product_api_product_update_field_request** | [**\OpenAPI\Client\Model\OpenAsyncProductApiProductUpdateFieldRequest**](../Model/OpenAsyncProductApiProductUpdateFieldRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **open_async_product_api_product_update_field_request** | [**\OpenAPI\Client\Model\OpenAsyncProductApiProductUpdateFieldRequest**](../Model/OpenAsyncProductApiProductUpdateFieldRequest.md)|  | |
 
 ### Return type
 
@@ -452,7 +452,7 @@ $apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest(); // \OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest()); // OpenAsyncProductApiScrollProductByFilterRequest
 
 try {
     $result = $apiInstance->openAsyncProductApiServiceScrollProductByFilter($body);
@@ -464,9 +464,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**\OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest**](../Model/.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiScrollProductByFilterRequest**](../Model/.md)|  | |
 
 ### Return type
 
@@ -506,7 +506,7 @@ $apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$body = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest(); // \OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest()); // OpenAsyncProductApiScrollProductByFilterRequest
 
 try {
     $result = $apiInstance->openAsyncProductApiServiceScrollShortProductByFilter($body);
@@ -518,9 +518,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**\OpenAPI\Client\Model\OpenAsyncProductApiScrollProductByFilterRequest**](../Model/.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiScrollProductByFilterRequest**](../Model/.md)|  | |
 
 ### Return type
 
@@ -566,7 +566,7 @@ $apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceRequest(); // \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceRequest
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceRequest()); // OpenAsyncProductApiUpdateSkuPriceRequest
 
 try {
     $result = $apiInstance->openAsyncProductApiServiceUpdateSkuPrice($body);
@@ -578,9 +578,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**\OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceRequest**](../Model/.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiUpdateSkuPriceRequest**](../Model/.md)|  | |
 
 ### Return type
 
@@ -626,7 +626,7 @@ $apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \OpenAPI\Client\Model\\OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequest(); // \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequest
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequest()); // OpenAsyncProductApiUpdateSkuStockRequest
 
 try {
     $result = $apiInstance->openAsyncProductApiServiceUpdateSkuStock($body);
@@ -638,9 +638,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**\OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequest**](../Model/.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiUpdateSkuStockRequest**](../Model/.md)|  | |
 
 ### Return type
 
