@@ -38,6 +38,8 @@ use OpenAPI\Client\ApiException;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
+use OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceRequest;
+use OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequest;
 
 /**
  * OpenAsyncProductApiServiceApi Class Doc Comment
@@ -3958,7 +3960,7 @@ class OpenAsyncProductApiServiceApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
      */
-    public function openAsyncProductApiServiceUpdateSkuPrice($body, string $contentType = self::contentTypes['openAsyncProductApiServiceUpdateSkuPrice'][0])
+    public function openAsyncProductApiServiceUpdateSkuPrice(OpenAsyncProductApiUpdateSkuPriceRequest $body, string $contentType = self::contentTypes['openAsyncProductApiServiceUpdateSkuPrice'][0])
     {
         list($response) = $this->openAsyncProductApiServiceUpdateSkuPriceWithHttpInfo($body, $contentType);
         return $response;
@@ -4300,20 +4302,8 @@ class OpenAsyncProductApiServiceApi
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+        $query = '';
         $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $body,
-            'body', // param base name
-            'object', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -4321,30 +4311,7 @@ class OpenAsyncProductApiServiceApi
             $multipart
         );
 
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
+        $httpBody = \GuzzleHttp\json_encode($body);
 
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
@@ -4364,10 +4331,11 @@ class OpenAsyncProductApiServiceApi
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        //$query = ObjectSerializer::buildQuery($queryParams);
+        $query = null;
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath,
             $headers,
             $httpBody
         );
@@ -4406,6 +4374,7 @@ class OpenAsyncProductApiServiceApi
     public function openAsyncProductApiServiceUpdateSkuStockWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceUpdateSkuStock'][0])
     {
         $request = $this->openAsyncProductApiServiceUpdateSkuStockRequest($body, $contentType);
+        //exit;
 
         try {
             $options = $this->createHttpClientOption();
@@ -4727,20 +4696,8 @@ class OpenAsyncProductApiServiceApi
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+        $query = '';
         $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $body,
-            'body', // param base name
-            'object', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -4748,30 +4705,7 @@ class OpenAsyncProductApiServiceApi
             $multipart
         );
 
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
+        $httpBody = \GuzzleHttp\json_encode($body);
 
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
@@ -4791,10 +4725,11 @@ class OpenAsyncProductApiServiceApi
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        //$query = ObjectSerializer::buildQuery($queryParams);
+        $query = null;
         return new Request(
             'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath,
             $headers,
             $httpBody
         );
