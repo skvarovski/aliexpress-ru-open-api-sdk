@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAsyncProductApiProduct
+ * ScopenAsyncProductApiProduct
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * OpenAsyncProductApiProduct Class Doc Comment
+ * ScopenAsyncProductApiProduct Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSerializable
+class ScopenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
       *
       * @var string
       */
-    protected static $openAPIModelName = 'open_async_product_apiProduct';
+    protected static $openAPIModelName = 'scopen_async_product_apiProduct';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -80,8 +80,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
         'lot_num' => 'string',
         'gtin' => 'string',
         'tnved_codes' => 'string[]',
-        'okpd2_codes' => 'string[]',
-        'product_id' => 'string'
+        'okpd2_codes' => 'string[]'
     ];
 
     /**
@@ -115,8 +114,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
         'lot_num' => 'uint64',
         'gtin' => null,
         'tnved_codes' => null,
-        'okpd2_codes' => null,
-        'product_id' => 'int64'
+        'okpd2_codes' => null
     ];
 
     /**
@@ -148,8 +146,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
 		'lot_num' => false,
 		'gtin' => false,
 		'tnved_codes' => false,
-		'okpd2_codes' => false,
-		'product_id' => false
+		'okpd2_codes' => false
     ];
 
     /**
@@ -261,8 +258,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
         'lot_num' => 'lot_num',
         'gtin' => 'gtin',
         'tnved_codes' => 'tnved_codes',
-        'okpd2_codes' => 'okpd2_codes',
-        'product_id' => 'product_id'
+        'okpd2_codes' => 'okpd2_codes'
     ];
 
     /**
@@ -294,8 +290,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
         'lot_num' => 'setLotNum',
         'gtin' => 'setGtin',
         'tnved_codes' => 'setTnvedCodes',
-        'okpd2_codes' => 'setOkpd2Codes',
-        'product_id' => 'setProductId'
+        'okpd2_codes' => 'setOkpd2Codes'
     ];
 
     /**
@@ -327,8 +322,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
         'lot_num' => 'getLotNum',
         'gtin' => 'getGtin',
         'tnved_codes' => 'getTnvedCodes',
-        'okpd2_codes' => 'getOkpd2Codes',
-        'product_id' => 'getProductId'
+        'okpd2_codes' => 'getOkpd2Codes'
     ];
 
     /**
@@ -412,7 +406,6 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('gtin', $data ?? [], null);
         $this->setIfExists('tnved_codes', $data ?? [], null);
         $this->setIfExists('okpd2_codes', $data ?? [], null);
-        $this->setIfExists('product_id', $data ?? [], null);
     }
 
     /**
@@ -442,78 +435,6 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        if ($this->container['language'] === null) {
-            $invalidProperties[] = "'language' can't be null";
-        }
-        if ($this->container['multi_language_description_list'] === null) {
-            $invalidProperties[] = "'multi_language_description_list' can't be null";
-        }
-        if ($this->container['multi_language_subject_list'] === null) {
-            $invalidProperties[] = "'multi_language_subject_list' can't be null";
-        }
-        if ($this->container['aliexpress_category_id'] === null) {
-            $invalidProperties[] = "'aliexpress_category_id' can't be null";
-        }
-        if ($this->container['brand_name'] === null) {
-            $invalidProperties[] = "'brand_name' can't be null";
-        }
-        if ($this->container['main_image_urls_list'] === null) {
-            $invalidProperties[] = "'main_image_urls_list' can't be null";
-        }
-        if ($this->container['sku_info_list'] === null) {
-            $invalidProperties[] = "'sku_info_list' can't be null";
-        }
-        if ($this->container['attribute_list'] === null) {
-            $invalidProperties[] = "'attribute_list' can't be null";
-        }
-        if ($this->container['inventory_deduction_strategy'] === null) {
-            $invalidProperties[] = "'inventory_deduction_strategy' can't be null";
-        }
-        if ($this->container['weight'] === null) {
-            $invalidProperties[] = "'weight' can't be null";
-        }
-        if ($this->container['package_length'] === null) {
-            $invalidProperties[] = "'package_length' can't be null";
-        }
-        if (($this->container['package_length'] > 700)) {
-            $invalidProperties[] = "invalid value for 'package_length', must be smaller than or equal to 700.";
-        }
-
-        if (($this->container['package_length'] < 1)) {
-            $invalidProperties[] = "invalid value for 'package_length', must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['package_height'] === null) {
-            $invalidProperties[] = "'package_height' can't be null";
-        }
-        if (($this->container['package_height'] > 700)) {
-            $invalidProperties[] = "invalid value for 'package_height', must be smaller than or equal to 700.";
-        }
-
-        if (($this->container['package_height'] < 1)) {
-            $invalidProperties[] = "invalid value for 'package_height', must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['package_width'] === null) {
-            $invalidProperties[] = "'package_width' can't be null";
-        }
-        if (($this->container['package_width'] > 700)) {
-            $invalidProperties[] = "invalid value for 'package_width', must be smaller than or equal to 700.";
-        }
-
-        if (($this->container['package_width'] < 1)) {
-            $invalidProperties[] = "invalid value for 'package_width', must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['freight_template_id'] === null) {
-            $invalidProperties[] = "'freight_template_id' can't be null";
-        }
-        if ($this->container['shipping_lead_time'] === null) {
-            $invalidProperties[] = "'shipping_lead_time' can't be null";
-        }
-        if ($this->container['service_policy_id'] === null) {
-            $invalidProperties[] = "'service_policy_id' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -532,7 +453,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets language
      *
-     * @return string
+     * @return string|null
      */
     public function getLanguage()
     {
@@ -542,7 +463,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets language
      *
-     * @param string $language Основной язык товара
+     * @param string|null $language language
      *
      * @return self
      */
@@ -571,7 +492,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets product_unit
      *
-     * @param int|null $product_unit Единица измерения товара. Наиболее часто используются штуки (100000015), упаковки (100000014) и комплект (100000017)
+     * @param int|null $product_unit product_unit
      *
      * @return self
      */
@@ -590,7 +511,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets multi_language_description_list
      *
-     * @return \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageDescriptionDto[]
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageDescriptionDto[]|null
      */
     public function getMultiLanguageDescriptionList()
     {
@@ -600,7 +521,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets multi_language_description_list
      *
-     * @param \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageDescriptionDto[] $multi_language_description_list Список названий товара на нескольких языках
+     * @param \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageDescriptionDto[]|null $multi_language_description_list multi_language_description_list
      *
      * @return self
      */
@@ -619,7 +540,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets multi_language_subject_list
      *
-     * @return \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageTitleDto[]
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageTitleDto[]|null
      */
     public function getMultiLanguageSubjectList()
     {
@@ -629,7 +550,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets multi_language_subject_list
      *
-     * @param \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageTitleDto[] $multi_language_subject_list Список описаний товара на нескольких языках
+     * @param \OpenAPI\Client\Model\OpenAsyncProductApiSingleLanguageTitleDto[]|null $multi_language_subject_list multi_language_subject_list
      *
      * @return self
      */
@@ -648,7 +569,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets aliexpress_category_id
      *
-     * @return string
+     * @return string|null
      */
     public function getAliexpressCategoryId()
     {
@@ -658,7 +579,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets aliexpress_category_id
      *
-     * @param string $aliexpress_category_id Идентификатор категории нижнего уровня
+     * @param string|null $aliexpress_category_id aliexpress_category_id
      *
      * @return self
      */
@@ -677,7 +598,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets brand_name
      *
-     * @return string
+     * @return string|null
      */
     public function getBrandName()
     {
@@ -687,7 +608,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets brand_name
      *
-     * @param string $brand_name Название бренда. Этот параметр нужно передать или отдельно, или внутри объекта attribute_list, aliexpress_attribute_name_id = 2. Если бренда нет, передайте None. Можно передавать только бренды, которые вы добавили в свой магазин
+     * @param string|null $brand_name brand_name
      *
      * @return self
      */
@@ -706,7 +627,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets main_image_urls_list
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getMainImageUrlsList()
     {
@@ -716,7 +637,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets main_image_urls_list
      *
-     * @param string[] $main_image_urls_list Массив ссылок на основные изображения товара. Все ссылки должны быть прямыми, то есть вести на изображение на вашем сервере или на CDN AliExpress
+     * @param string[]|null $main_image_urls_list main_image_urls_list
      *
      * @return self
      */
@@ -735,7 +656,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets sku_info_list
      *
-     * @return \OpenAPI\Client\Model\OpenAsyncProductApiSkuInfoDto[]
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiSkuInfoDto[]|null
      */
     public function getSkuInfoList()
     {
@@ -745,7 +666,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets sku_info_list
      *
-     * @param \OpenAPI\Client\Model\OpenAsyncProductApiSkuInfoDto[] $sku_info_list Содержит три обязательных параметра: * inventory (остаток товара на складе от 1 до 999999), * price (цена товара от 0,01 до 999999), * sku_code (идентификатор экземпляра: артикул или штрихкод) И ряд необязательных: discount_price, bar_code (штрихкод, обязательно для продавцов, работающих по модели Фулфилмент «Цайняо»), sku_attributes_list (список полей sku_attribute_name, sku_attribute_value и sku_image_url)
+     * @param \OpenAPI\Client\Model\OpenAsyncProductApiSkuInfoDto[]|null $sku_info_list sku_info_list
      *
      * @return self
      */
@@ -764,7 +685,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets attribute_list
      *
-     * @return \OpenAPI\Client\Model\OpenAsyncProductApiAttributeDto[]
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiAttributeDto[]|null
      */
     public function getAttributeList()
     {
@@ -774,7 +695,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets attribute_list
      *
-     * @param \OpenAPI\Client\Model\OpenAsyncProductApiAttributeDto[] $attribute_list Список ключей и значений атрибутов товара. * attribute_name, string (название нового атрибута) * attribute_value, string (новое значение атрибута) * attribute_name_id, int (существующее в системе название атрибута) * attribute_value_id, int (существующее в системе значение атрибута)
+     * @param \OpenAPI\Client\Model\OpenAsyncProductApiAttributeDto[]|null $attribute_list attribute_list
      *
      * @return self
      */
@@ -793,7 +714,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets inventory_deduction_strategy
      *
-     * @return string
+     * @return string|null
      */
     public function getInventoryDeductionStrategy()
     {
@@ -803,7 +724,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets inventory_deduction_strategy
      *
-     * @param string $inventory_deduction_strategy В какой момент будет вычитаться остаток товара: в момент оплаты (payment_success_deduct) или в момент совершения заказа place_order_withhold)
+     * @param string|null $inventory_deduction_strategy inventory_deduction_strategy
      *
      * @return self
      */
@@ -822,7 +743,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets weight
      *
-     * @return string
+     * @return string|null
      */
     public function getWeight()
     {
@@ -832,7 +753,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets weight
      *
-     * @param string $weight Вес товара в упаковке (используется для расчёта доставки). Может принимать значение от 0,001 до 500 килограммов
+     * @param string|null $weight weight
      *
      * @return self
      */
@@ -851,7 +772,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets package_length
      *
-     * @return int
+     * @return int|null
      */
     public function getPackageLength()
     {
@@ -861,20 +782,12 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets package_length
      *
-     * @param int $package_length Длина упаковки в сантиметрах. Может принимать значение от 1 до 700 сантиметров
+     * @param int|null $package_length package_length
      *
      * @return self
      */
     public function setPackageLength($package_length)
     {
-
-        if (($package_length > 700)) {
-            throw new \InvalidArgumentException('invalid value for $package_length when calling OpenAsyncProductApiProduct., must be smaller than or equal to 700.');
-        }
-        if (($package_length < 1)) {
-            throw new \InvalidArgumentException('invalid value for $package_length when calling OpenAsyncProductApiProduct., must be bigger than or equal to 1.');
-        }
-
 
         if (is_null($package_length)) {
             throw new \InvalidArgumentException('non-nullable package_length cannot be null');
@@ -888,7 +801,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets package_height
      *
-     * @return int
+     * @return int|null
      */
     public function getPackageHeight()
     {
@@ -898,20 +811,12 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets package_height
      *
-     * @param int $package_height Высота упаковки в сантиметрах. Может принимать значение от 1 до 700 сантиметров
+     * @param int|null $package_height package_height
      *
      * @return self
      */
     public function setPackageHeight($package_height)
     {
-
-        if (($package_height > 700)) {
-            throw new \InvalidArgumentException('invalid value for $package_height when calling OpenAsyncProductApiProduct., must be smaller than or equal to 700.');
-        }
-        if (($package_height < 1)) {
-            throw new \InvalidArgumentException('invalid value for $package_height when calling OpenAsyncProductApiProduct., must be bigger than or equal to 1.');
-        }
-
 
         if (is_null($package_height)) {
             throw new \InvalidArgumentException('non-nullable package_height cannot be null');
@@ -925,7 +830,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets package_width
      *
-     * @return int
+     * @return int|null
      */
     public function getPackageWidth()
     {
@@ -935,20 +840,12 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets package_width
      *
-     * @param int $package_width Ширина упаковки в сантиметрах. Может принимать значение от 1 до 700 сантиметров
+     * @param int|null $package_width package_width
      *
      * @return self
      */
     public function setPackageWidth($package_width)
     {
-
-        if (($package_width > 700)) {
-            throw new \InvalidArgumentException('invalid value for $package_width when calling OpenAsyncProductApiProduct., must be smaller than or equal to 700.');
-        }
-        if (($package_width < 1)) {
-            throw new \InvalidArgumentException('invalid value for $package_width when calling OpenAsyncProductApiProduct., must be bigger than or equal to 1.');
-        }
-
 
         if (is_null($package_width)) {
             throw new \InvalidArgumentException('non-nullable package_width cannot be null');
@@ -962,7 +859,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets freight_template_id
      *
-     * @return string
+     * @return string|null
      */
     public function getFreightTemplateId()
     {
@@ -972,7 +869,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets freight_template_id
      *
-     * @param string $freight_template_id Идентификатор шаблона доставки, уникален для каждого продавца или шаблона
+     * @param string|null $freight_template_id freight_template_id
      *
      * @return self
      */
@@ -1001,7 +898,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets size_chart_id
      *
-     * @param string|null $size_chart_id Идентификатор таблицы размеров. Нужен для одежды, обуви, аксессуаров и белья
+     * @param string|null $size_chart_id size_chart_id
      *
      * @return self
      */
@@ -1020,7 +917,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets shipping_lead_time
      *
-     * @return string
+     * @return string|null
      */
     public function getShippingLeadTime()
     {
@@ -1030,7 +927,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets shipping_lead_time
      *
-     * @param string $shipping_lead_time Время на отправку заказа (время, за которое вы обязуетесь ввести трек-номер)
+     * @param string|null $shipping_lead_time shipping_lead_time
      *
      * @return self
      */
@@ -1049,7 +946,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets service_policy_id
      *
-     * @return string
+     * @return string|null
      */
     public function getServicePolicyId()
     {
@@ -1059,7 +956,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets service_policy_id
      *
-     * @param string $service_policy_id Идентификатор шаблон услуг, описывающего условия возврата. id = 0 соответствует шаблону по умолчанию: Service Template for New Sellers
+     * @param string|null $service_policy_id service_policy_id
      *
      * @return self
      */
@@ -1088,7 +985,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets ae_group_ids
      *
-     * @param string[]|null $ae_group_ids Идентификатор группы товаров
+     * @param string[]|null $ae_group_ids ae_group_ids
      *
      * @return self
      */
@@ -1117,7 +1014,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets package_type
      *
-     * @param bool|null $package_type Метод продаж. false - поштучно, true - лотами
+     * @param bool|null $package_type package_type
      *
      * @return self
      */
@@ -1146,7 +1043,7 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets lot_num
      *
-     * @param string|null $lot_num Количество твоара в лоте
+     * @param string|null $lot_num lot_num
      *
      * @return self
      */
@@ -1245,35 +1142,6 @@ class OpenAsyncProductApiProduct implements ModelInterface, ArrayAccess, \JsonSe
         }
 
         $this->container['okpd2_codes'] = $okpd2_codes;
-
-        return $this;
-    }
-
-    /**
-     * Gets product_id
-     *
-     * @return string|null
-     */
-    public function getProductId()
-    {
-        return $this->container['product_id'];
-    }
-
-    /**
-     * Sets product_id
-     *
-     * @param string|null $product_id product_id
-     *
-     * @return self
-     */
-    public function setProductId($product_id)
-    {
-
-        if (is_null($product_id)) {
-            throw new \InvalidArgumentException('non-nullable product_id cannot be null');
-        }
-
-        $this->container['product_id'] = $product_id;
 
         return $this;
     }

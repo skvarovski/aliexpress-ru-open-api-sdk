@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAsyncProductApiProductCreateResponse
+ * OpenAsyncProductApiGetCategoriesRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * OpenAsyncProductApiProductCreateResponse Class Doc Comment
+ * OpenAsyncProductApiGetCategoriesRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class OpenAsyncProductApiGetCategoriesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
       *
       * @var string
       */
-    protected static $openAPIModelName = 'open_async_product_apiProductCreateResponse';
+    protected static $openAPIModelName = 'open_async_product_apiGetCategoriesRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
       * @var string[]
       */
     protected static $openAPITypes = [
-        'group_id' => 'string',
-        'results' => '\OpenAPI\Client\Model\OpenAsyncProductApiTaskResult[]'
+        'ids' => 'string[]'
     ];
 
     /**
@@ -69,8 +68,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'group_id' => 'uint64',
-        'results' => null
+        'ids' => 'int64'
     ];
 
     /**
@@ -79,8 +77,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'group_id' => false,
-		'results' => false
+        'ids' => false
     ];
 
     /**
@@ -169,8 +166,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $attributeMap = [
-        'group_id' => 'group_id',
-        'results' => 'results'
+        'ids' => 'ids'
     ];
 
     /**
@@ -179,8 +175,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $setters = [
-        'group_id' => 'setGroupId',
-        'results' => 'setResults'
+        'ids' => 'setIds'
     ];
 
     /**
@@ -189,8 +184,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
      * @var string[]
      */
     protected static $getters = [
-        'group_id' => 'getGroupId',
-        'results' => 'getResults'
+        'ids' => 'getIds'
     ];
 
     /**
@@ -250,8 +244,7 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('group_id', $data ?? [], null);
-        $this->setIfExists('results', $data ?? [], null);
+        $this->setIfExists('ids', $data ?? [], null);
     }
 
     /**
@@ -297,59 +290,30 @@ class OpenAsyncProductApiProductCreateResponse implements ModelInterface, ArrayA
 
 
     /**
-     * Gets group_id
+     * Gets ids
      *
-     * @return string|null
+     * @return string[]|null
      */
-    public function getGroupId()
+    public function getIds()
     {
-        return $this->container['group_id'];
+        return $this->container['ids'];
     }
 
     /**
-     * Sets group_id
+     * Sets ids
      *
-     * @param string|null $group_id Идентификатор запроса. По нему можно будет посмотреть статусы загрузки и обновления товаров
+     * @param string[]|null $ids Массив идентификаторов категорий.
      *
      * @return self
      */
-    public function setGroupId($group_id)
+    public function setIds($ids)
     {
 
-        if (is_null($group_id)) {
-            throw new \InvalidArgumentException('non-nullable group_id cannot be null');
+        if (is_null($ids)) {
+            throw new \InvalidArgumentException('non-nullable ids cannot be null');
         }
 
-        $this->container['group_id'] = $group_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets results
-     *
-     * @return \OpenAPI\Client\Model\OpenAsyncProductApiTaskResult[]|null
-     */
-    public function getResults()
-    {
-        return $this->container['results'];
-    }
-
-    /**
-     * Sets results
-     *
-     * @param \OpenAPI\Client\Model\OpenAsyncProductApiTaskResult[]|null $results results
-     *
-     * @return self
-     */
-    public function setResults($results)
-    {
-
-        if (is_null($results)) {
-            throw new \InvalidArgumentException('non-nullable results cannot be null');
-        }
-
-        $this->container['results'] = $results;
+        $this->container['ids'] = $ids;
 
         return $this;
     }

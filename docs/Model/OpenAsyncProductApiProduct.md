@@ -28,5 +28,6 @@ Name | Type | Description | Notes
 **gtin** | **string** |  | [optional]
 **tnved_codes** | **string[]** |  | [optional]
 **okpd2_codes** | **string[]** |  | [optional]
+**product_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

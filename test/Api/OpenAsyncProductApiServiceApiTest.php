@@ -84,6 +84,42 @@ class OpenAsyncProductApiServiceApiTest extends TestCase
     }
 
     /**
+     * Test case for openAsyncProductApiServiceGetCategories
+     *
+     * .
+     *
+     */
+    public function testOpenAsyncProductApiServiceGetCategories()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for openAsyncProductApiServiceGetCategoriesTop
+     *
+     * .
+     *
+     */
+    public function testOpenAsyncProductApiServiceGetCategoriesTop()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for openAsyncProductApiServiceGetDictionaryByProperty
+     *
+     * .
+     *
+     */
+    public function testOpenAsyncProductApiServiceGetDictionaryByProperty()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for openAsyncProductApiServiceGetProducts
      *
      * Метод получения продуктов.
@@ -138,6 +174,18 @@ class OpenAsyncProductApiServiceApiTest extends TestCase
      *
      */
     public function testOpenAsyncProductApiServiceProductCreate()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for openAsyncProductApiServiceProductEdit
+     *
+     * Полное редактирование продукта.
+     *
+     */
+    public function testOpenAsyncProductApiServiceProductEdit()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -38,8 +38,6 @@ use OpenAPI\Client\ApiException;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceRequest;
-use OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuStockRequest;
 
 /**
  * OpenAsyncProductApiServiceApi Class Doc Comment
@@ -76,6 +74,15 @@ class OpenAsyncProductApiServiceApi
         'openAsyncProductApiServiceGetBrandList' => [
             'application/json',
         ],
+        'openAsyncProductApiServiceGetCategories' => [
+            'application/json',
+        ],
+        'openAsyncProductApiServiceGetCategoriesTop' => [
+            'application/json',
+        ],
+        'openAsyncProductApiServiceGetDictionaryByProperty' => [
+            'application/json',
+        ],
         'openAsyncProductApiServiceGetProducts' => [
             'application/json',
         ],
@@ -89,6 +96,9 @@ class OpenAsyncProductApiServiceApi
             'application/json',
         ],
         'openAsyncProductApiServiceProductCreate' => [
+            'application/json',
+        ],
+        'openAsyncProductApiServiceProductEdit' => [
             'application/json',
         ],
         'openAsyncProductApiServiceProductUpdateField' => [
@@ -496,6 +506,1248 @@ class OpenAsyncProductApiServiceApi
 
 
         $resourcePath = '/api/v1/brand/get-brand-list';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $body,
+            'body', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategories
+     *
+     * @param  OpenAsyncProductApiGetCategoriesRequest $body body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategories'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
+     */
+    public function openAsyncProductApiServiceGetCategories($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategories'][0])
+    {
+        list($response) = $this->openAsyncProductApiServiceGetCategoriesWithHttpInfo($body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategoriesWithHttpInfo
+     *
+     * @param  OpenAsyncProductApiGetCategoriesRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategories'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function openAsyncProductApiServiceGetCategoriesWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategories'][0])
+    {
+        $request = $this->openAsyncProductApiServiceGetCategoriesRequest($body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategoriesAsync
+     *
+     * @param  OpenAsyncProductApiGetCategoriesRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceGetCategoriesAsync($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategories'][0])
+    {
+        return $this->openAsyncProductApiServiceGetCategoriesAsyncWithHttpInfo($body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategoriesAsyncWithHttpInfo
+     *
+     * @param  OpenAsyncProductApiGetCategoriesRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceGetCategoriesAsyncWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategories'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse';
+        $request = $this->openAsyncProductApiServiceGetCategoriesRequest($body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'openAsyncProductApiServiceGetCategories'
+     *
+     * @param  OpenAsyncProductApiGetCategoriesRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategories'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function openAsyncProductApiServiceGetCategoriesRequest($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategories'][0])
+    {
+
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling openAsyncProductApiServiceGetCategories'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/categories/get';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $body,
+            'body', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategoriesTop
+     *
+     * @param  mixed $body body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
+     */
+    public function openAsyncProductApiServiceGetCategoriesTop($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'][0])
+    {
+        list($response) = $this->openAsyncProductApiServiceGetCategoriesTopWithHttpInfo($body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategoriesTopWithHttpInfo
+     *
+     * @param  mixed $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function openAsyncProductApiServiceGetCategoriesTopWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'][0])
+    {
+        $request = $this->openAsyncProductApiServiceGetCategoriesTopRequest($body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategoriesTopAsync
+     *
+     * @param  mixed $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceGetCategoriesTopAsync($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'][0])
+    {
+        return $this->openAsyncProductApiServiceGetCategoriesTopAsyncWithHttpInfo($body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetCategoriesTopAsyncWithHttpInfo
+     *
+     * @param  mixed $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceGetCategoriesTopAsyncWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse';
+        $request = $this->openAsyncProductApiServiceGetCategoriesTopRequest($body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'openAsyncProductApiServiceGetCategoriesTop'
+     *
+     * @param  mixed $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function openAsyncProductApiServiceGetCategoriesTopRequest($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetCategoriesTop'][0])
+    {
+
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling openAsyncProductApiServiceGetCategoriesTop'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/categories/top';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $body,
+            'body', // param base name
+            'mixed', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetDictionaryByProperty
+     *
+     * @param  OpenAsyncProductApiGetDictionaryByPropertyRequest $body body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
+     */
+    public function openAsyncProductApiServiceGetDictionaryByProperty($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'][0])
+    {
+        list($response) = $this->openAsyncProductApiServiceGetDictionaryByPropertyWithHttpInfo($body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetDictionaryByPropertyWithHttpInfo
+     *
+     * @param  OpenAsyncProductApiGetDictionaryByPropertyRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function openAsyncProductApiServiceGetDictionaryByPropertyWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'][0])
+    {
+        $request = $this->openAsyncProductApiServiceGetDictionaryByPropertyRequest($body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetDictionaryByPropertyAsync
+     *
+     * @param  OpenAsyncProductApiGetDictionaryByPropertyRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceGetDictionaryByPropertyAsync($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'][0])
+    {
+        return $this->openAsyncProductApiServiceGetDictionaryByPropertyAsyncWithHttpInfo($body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceGetDictionaryByPropertyAsyncWithHttpInfo
+     *
+     * @param  OpenAsyncProductApiGetDictionaryByPropertyRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceGetDictionaryByPropertyAsyncWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse';
+        $request = $this->openAsyncProductApiServiceGetDictionaryByPropertyRequest($body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'openAsyncProductApiServiceGetDictionaryByProperty'
+     *
+     * @param  OpenAsyncProductApiGetDictionaryByPropertyRequest $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function openAsyncProductApiServiceGetDictionaryByPropertyRequest($body, string $contentType = self::contentTypes['openAsyncProductApiServiceGetDictionaryByProperty'][0])
+    {
+
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling openAsyncProductApiServiceGetDictionaryByProperty'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/categories/values-dictionary';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2275,7 +3527,7 @@ class OpenAsyncProductApiServiceApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
      */
     public function openAsyncProductApiServiceProductCreate($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductCreate'][0])
     {
@@ -2293,7 +3545,7 @@ class OpenAsyncProductApiServiceApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function openAsyncProductApiServiceProductCreateWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductCreate'][0])
     {
@@ -2336,17 +3588,17 @@ class OpenAsyncProductApiServiceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse' !== 'string') {
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2442,7 +3694,7 @@ class OpenAsyncProductApiServiceApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse';
+            $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2463,7 +3715,7 @@ class OpenAsyncProductApiServiceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse',
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2555,7 +3807,7 @@ class OpenAsyncProductApiServiceApi
      */
     public function openAsyncProductApiServiceProductCreateAsyncWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductCreate'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse';
+        $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse';
         $request = $this->openAsyncProductApiServiceProductCreateRequest($body, $contentType);
 
         return $this->client
@@ -2640,6 +3892,433 @@ class OpenAsyncProductApiServiceApi
                 $httpBody = $body;
             }
         } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
+        if ($apiKey !== null) {
+            $headers['X-Auth-Token'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceProductEdit
+     *
+     * Полное редактирование продукта
+     *
+     * @param  OpenAsyncProductApiProductCreateRequestDoc $body body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceProductEdit'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
+     */
+    public function openAsyncProductApiServiceProductEdit($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductEdit'][0])
+    {
+        list($response) = $this->openAsyncProductApiServiceProductEditWithHttpInfo($body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceProductEditWithHttpInfo
+     *
+     * Полное редактирование продукта
+     *
+     * @param  OpenAsyncProductApiProductCreateRequestDoc $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceProductEdit'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function openAsyncProductApiServiceProductEditWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductEdit'][0])
+    {
+        $request = $this->openAsyncProductApiServiceProductEditRequest($body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceProductEditAsync
+     *
+     * Полное редактирование продукта
+     *
+     * @param  OpenAsyncProductApiProductCreateRequestDoc $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceProductEdit'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceProductEditAsync($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductEdit'][0])
+    {
+        return $this->openAsyncProductApiServiceProductEditAsyncWithHttpInfo($body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation openAsyncProductApiServiceProductEditAsyncWithHttpInfo
+     *
+     * Полное редактирование продукта
+     *
+     * @param  OpenAsyncProductApiProductCreateRequestDoc $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceProductEdit'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function openAsyncProductApiServiceProductEditAsyncWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductEdit'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse';
+        $request = $this->openAsyncProductApiServiceProductEditRequest($body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'openAsyncProductApiServiceProductEdit'
+     *
+     * @param  OpenAsyncProductApiProductCreateRequestDoc $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['openAsyncProductApiServiceProductEdit'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function openAsyncProductApiServiceProductEditRequest($body, string $contentType = self::contentTypes['openAsyncProductApiServiceProductEdit'][0])
+    {
+
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling openAsyncProductApiServiceProductEdit'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/product/edit';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $body,
+            'body', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -3960,7 +5639,7 @@ class OpenAsyncProductApiServiceApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\OpenAsyncProductApiUpdateSkuPriceResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse|\OpenAPI\Client\Model\OpenAsyncProductApiErrorResponse
      */
-    public function openAsyncProductApiServiceUpdateSkuPrice(OpenAsyncProductApiUpdateSkuPriceRequest $body, string $contentType = self::contentTypes['openAsyncProductApiServiceUpdateSkuPrice'][0])
+    public function openAsyncProductApiServiceUpdateSkuPrice($body, string $contentType = self::contentTypes['openAsyncProductApiServiceUpdateSkuPrice'][0])
     {
         list($response) = $this->openAsyncProductApiServiceUpdateSkuPriceWithHttpInfo($body, $contentType);
         return $response;
@@ -4302,8 +5981,20 @@ class OpenAsyncProductApiServiceApi
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $query = '';
         $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $body,
+            'body', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -4311,7 +6002,30 @@ class OpenAsyncProductApiServiceApi
             $multipart
         );
 
-        $httpBody = \GuzzleHttp\json_encode($body);
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
 
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
@@ -4331,11 +6045,10 @@ class OpenAsyncProductApiServiceApi
         );
 
         $operationHost = $this->config->getHost();
-        //$query = ObjectSerializer::buildQuery($queryParams);
-        $query = null;
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath,
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -4374,7 +6087,6 @@ class OpenAsyncProductApiServiceApi
     public function openAsyncProductApiServiceUpdateSkuStockWithHttpInfo($body, string $contentType = self::contentTypes['openAsyncProductApiServiceUpdateSkuStock'][0])
     {
         $request = $this->openAsyncProductApiServiceUpdateSkuStockRequest($body, $contentType);
-        //exit;
 
         try {
             $options = $this->createHttpClientOption();
@@ -4696,8 +6408,20 @@ class OpenAsyncProductApiServiceApi
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $query = '';
         $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $body,
+            'body', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', ],
@@ -4705,7 +6429,30 @@ class OpenAsyncProductApiServiceApi
             $multipart
         );
 
-        $httpBody = \GuzzleHttp\json_encode($body);
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
 
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
@@ -4725,11 +6472,10 @@ class OpenAsyncProductApiServiceApi
         );
 
         $operationHost = $this->config->getHost();
-        //$query = ObjectSerializer::buildQuery($queryParams);
-        $query = null;
+        $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $operationHost . $resourcePath,
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

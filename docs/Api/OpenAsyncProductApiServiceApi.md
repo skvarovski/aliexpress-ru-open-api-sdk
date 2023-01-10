@@ -5,11 +5,15 @@ All URIs are relative to https://openapi.aliexpress.ru, except if the operation 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**openAsyncProductApiServiceGetBrandList()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetBrandList) | **POST** /api/v1/brand/get-brand-list |  |
+| [**openAsyncProductApiServiceGetCategories()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetCategories) | **POST** /api/v1/categories/get |  |
+| [**openAsyncProductApiServiceGetCategoriesTop()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetCategoriesTop) | **POST** /api/v1/categories/top |  |
+| [**openAsyncProductApiServiceGetDictionaryByProperty()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetDictionaryByProperty) | **POST** /api/v1/categories/values-dictionary |  |
 | [**openAsyncProductApiServiceGetProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetProducts) | **POST** /api/v1/product/get-products | Метод получения продуктов |
 | [**openAsyncProductApiServiceGetTasks()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceGetTasks) | **GET** /api/v1/tasks | Метод получения списка задач на создание/обновление товаров |
 | [**openAsyncProductApiServiceOfflineProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceOfflineProducts) | **POST** /api/v1/product/offline | Метод перевода продуктов в offline |
 | [**openAsyncProductApiServiceOnlineProducts()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceOnlineProducts) | **POST** /api/v1/product/online | Метод перевода продуктов в online |
 | [**openAsyncProductApiServiceProductCreate()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceProductCreate) | **POST** /api/v1/product/create | Метод создания продуктов |
+| [**openAsyncProductApiServiceProductEdit()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceProductEdit) | **POST** /api/v1/product/edit | Полное редактирование продукта |
 | [**openAsyncProductApiServiceProductUpdateField()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceProductUpdateField) | **POST** /api/v1/product/update-field | Метод обновления поля продукта |
 | [**openAsyncProductApiServiceScrollProductByFilter()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceScrollProductByFilter) | **POST** /api/v1/scroll-product-by-filter |  |
 | [**openAsyncProductApiServiceScrollShortProductByFilter()**](OpenAsyncProductApiServiceApi.md#openAsyncProductApiServiceScrollShortProductByFilter) | **POST** /api/v1/scroll-short-product-by-filter |  |
@@ -57,6 +61,168 @@ try {
 ### Return type
 
 [**\OpenAPI\Client\Model\OpenAsyncProductApiGetBrandListResponse**](../Model/OpenAsyncProductApiGetBrandListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `openAsyncProductApiServiceGetCategories()`
+
+```php
+openAsyncProductApiServiceGetCategories($body): \OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesRequest()); // OpenAsyncProductApiGetCategoriesRequest
+
+try {
+    $result = $apiInstance->openAsyncProductApiServiceGetCategories($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OpenAsyncProductApiServiceApi->openAsyncProductApiServiceGetCategories: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiGetCategoriesRequest**](../Model/.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesResponse**](../Model/OpenAsyncProductApiGetCategoriesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `openAsyncProductApiServiceGetCategoriesTop()`
+
+```php
+openAsyncProductApiServiceGetCategoriesTop($body): \OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$body = NULL; // mixed
+
+try {
+    $result = $apiInstance->openAsyncProductApiServiceGetCategoriesTop($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OpenAsyncProductApiServiceApi->openAsyncProductApiServiceGetCategoriesTop: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**mixed**](../Model/.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\OpenAsyncProductApiGetCategoriesTopResponse**](../Model/OpenAsyncProductApiGetCategoriesTopResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `openAsyncProductApiServiceGetDictionaryByProperty()`
+
+```php
+openAsyncProductApiServiceGetDictionaryByProperty($body): \OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyRequest()); // OpenAsyncProductApiGetDictionaryByPropertyRequest
+
+try {
+    $result = $apiInstance->openAsyncProductApiServiceGetDictionaryByProperty($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OpenAsyncProductApiServiceApi->openAsyncProductApiServiceGetDictionaryByProperty: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiGetDictionaryByPropertyRequest**](../Model/.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\OpenAsyncProductApiGetDictionaryByPropertyResponse**](../Model/OpenAsyncProductApiGetDictionaryByPropertyResponse.md)
 
 ### Authorization
 
@@ -308,7 +474,7 @@ try {
 ## `openAsyncProductApiServiceProductCreate()`
 
 ```php
-openAsyncProductApiServiceProductCreate($body): \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse
+openAsyncProductApiServiceProductCreate($body): \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse
 ```
 
 Метод создания продуктов
@@ -350,7 +516,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateResponse**](../Model/OpenAsyncProductApiProductCreateResponse.md)
+[**\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse**](../Model/OpenAsyncProductApiProductCreateOrEditResponse.md)
 
 ### Authorization
 
@@ -359,6 +525,66 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `openAsyncProductApiServiceProductEdit()`
+
+```php
+openAsyncProductApiServiceProductEdit($body): \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse
+```
+
+Полное редактирование продукта
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: X-Auth-Token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Auth-Token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Auth-Token', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\OpenAsyncProductApiServiceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$body = array('key' => new \OpenAPI\Client\Model\OpenAsyncProductApiProductCreateRequestDoc()); // OpenAsyncProductApiProductCreateRequestDoc
+
+try {
+    $result = $apiInstance->openAsyncProductApiServiceProductEdit($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OpenAsyncProductApiServiceApi->openAsyncProductApiServiceProductEdit: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | [**OpenAsyncProductApiProductCreateRequestDoc**](../Model/.md)|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\OpenAsyncProductApiProductCreateOrEditResponse**](../Model/OpenAsyncProductApiProductCreateOrEditResponse.md)
+
+### Authorization
+
+[X-Auth-Token](../../README.md#X-Auth-Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

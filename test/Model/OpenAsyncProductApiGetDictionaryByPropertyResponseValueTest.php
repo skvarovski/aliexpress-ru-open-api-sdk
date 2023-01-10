@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAsyncProductApiProductCreateResponseTest
+ * OpenAsyncProductApiGetDictionaryByPropertyResponseValueTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * OpenAsyncProductApiProductCreateResponseTest Class Doc Comment
+ * OpenAsyncProductApiGetDictionaryByPropertyResponseValueTest Class Doc Comment
  *
  * @category    Class
- * @description OpenAsyncProductApiProductCreateResponse
+ * @description OpenAsyncProductApiGetDictionaryByPropertyResponseValue
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class OpenAsyncProductApiProductCreateResponseTest extends TestCase
+class OpenAsyncProductApiGetDictionaryByPropertyResponseValueTest extends TestCase
 {
 
     /**
@@ -71,27 +71,27 @@ class OpenAsyncProductApiProductCreateResponseTest extends TestCase
     }
 
     /**
-     * Test "OpenAsyncProductApiProductCreateResponse"
+     * Test "OpenAsyncProductApiGetDictionaryByPropertyResponseValue"
      */
-    public function testOpenAsyncProductApiProductCreateResponse()
+    public function testOpenAsyncProductApiGetDictionaryByPropertyResponseValue()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "group_id"
+     * Test attribute "id"
      */
-    public function testPropertyGroupId()
+    public function testPropertyId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "results"
+     * Test attribute "name"
      */
-    public function testPropertyResults()
+    public function testPropertyName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

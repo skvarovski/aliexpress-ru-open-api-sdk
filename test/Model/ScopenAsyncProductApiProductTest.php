@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAsyncProductApiProductTest
+ * ScopenAsyncProductApiProductTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace OpenAPI\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * OpenAsyncProductApiProductTest Class Doc Comment
+ * ScopenAsyncProductApiProductTest Class Doc Comment
  *
  * @category    Class
- * @description OpenAsyncProductApiProduct
+ * @description ScopenAsyncProductApiProduct
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class OpenAsyncProductApiProductTest extends TestCase
+class ScopenAsyncProductApiProductTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class OpenAsyncProductApiProductTest extends TestCase
     }
 
     /**
-     * Test "OpenAsyncProductApiProduct"
+     * Test "ScopenAsyncProductApiProduct"
      */
-    public function testOpenAsyncProductApiProduct()
+    public function testScopenAsyncProductApiProduct()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -290,15 +290,6 @@ class OpenAsyncProductApiProductTest extends TestCase
      * Test attribute "okpd2_codes"
      */
     public function testPropertyOkpd2Codes()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "product_id"
-     */
-    public function testPropertyProductId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

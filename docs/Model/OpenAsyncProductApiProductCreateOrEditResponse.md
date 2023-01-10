@@ -1,4 +1,4 @@
-# # OpenAsyncProductApiProductCreateResponse
+# # OpenAsyncProductApiProductCreateOrEditResponse
 
 ## Properties
 
