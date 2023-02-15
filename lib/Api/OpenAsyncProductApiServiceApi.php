@@ -4292,7 +4292,52 @@ class OpenAsyncProductApiServiceApi
 
 
         $resourcePath = '/api/v1/product/edit';
+
         $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $query = '';
+        $multipart = false;
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        $httpBody = \GuzzleHttp\json_encode($body);
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
+        if ($apiKey !== null) {
+            $headers['X-Auth-Token'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        //$query = ObjectSerializer::buildQuery($queryParams);
+        $query = null;
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath,
+            $headers,
+            $httpBody
+        );
+
+
+
+        /*$formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
@@ -4366,7 +4411,7 @@ class OpenAsyncProductApiServiceApi
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
-        );
+        );*/
     }
 
     /**
@@ -5977,7 +6022,50 @@ class OpenAsyncProductApiServiceApi
 
 
         $resourcePath = '/api/v1/product/update-sku-price';
+
         $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $query = '';
+        $multipart = false;
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        $httpBody = \GuzzleHttp\json_encode($body);
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
+        if ($apiKey !== null) {
+            $headers['X-Auth-Token'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        //$query = ObjectSerializer::buildQuery($queryParams);
+        $query = null;
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath,
+            $headers,
+            $httpBody
+        );
+
+        /*$formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
@@ -6051,7 +6139,7 @@ class OpenAsyncProductApiServiceApi
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
-        );
+        );*/
     }
 
     /**
@@ -6404,7 +6492,50 @@ class OpenAsyncProductApiServiceApi
 
 
         $resourcePath = '/api/v1/product/update-sku-stock';
+
         $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $query = '';
+        $multipart = false;
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        $httpBody = \GuzzleHttp\json_encode($body);
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Auth-Token');
+        if ($apiKey !== null) {
+            $headers['X-Auth-Token'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        //$query = ObjectSerializer::buildQuery($queryParams);
+        $query = null;
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath,
+            $headers,
+            $httpBody
+        );
+
+        /*$formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
@@ -6478,7 +6609,7 @@ class OpenAsyncProductApiServiceApi
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
-        );
+        );*/
     }
 
     /**
